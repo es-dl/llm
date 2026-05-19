@@ -1,4 +1,4 @@
-# qchat
+# llm
 
 Train, sample, and benchmark a compact GPT-style language model from your own text.
 
@@ -340,5 +340,4 @@ Reduce `--batch-size`, `--block-size`, `--n-embd`, or `--n-layer`.
 Try a higher `--temperature`, use `--top-k`, train longer, or improve the corpus quality.
 
 ## License
-
-No license file is currently included. Add one before publishing, distributing, or reusing this project outside personal experiments.
+ MIT
