@@ -1,0 +1,64 @@
+name: Benchmark
+
+on:
+  workflow_dispatch:
+    inputs:
+      runs:
+        description: "Number of benchmark runs"
+        required: false
+        default: "2"
+
+permissions:
+  contents: read
+
+jobs:
+  python-benchmark:
+    name: Python benchmark quick run
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install benchmark dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install torch --index-url https://download.pytorch.org/whl/cpu
+          pip install tiktoken psutil
+
+      - name: Build tiny checkpoint for benchmark
+        run: >
+          python train.py
+          --quick
+          --no-chat
+          --data data/input.txt
+          --tokenizer data/local/ci_tokenizer.json
+          --checkpoint data/local/ci_model.pt
+
+      - name: Run benchmark
+        run: >
+          python benchmarks/benchmark.py
+          --runs "${{ inputs.runs }}"
+          --warmup 1
+          --train-steps 1
+          --generate-tokens 4
+          --sequence-length 64
+          --max-data-chars 50000
+          --skip-train-step
+          --checkpoint data/local/ci_model.pt
+          --data data/input.txt
+          --tokenizer data/local/ci_tokenizer.json
+          --tokenizer-kind bpe
+          --out benchmarks/results
+
+      - name: Upload benchmark results
+        uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-results
+          path: benchmarks/results/
