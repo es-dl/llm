@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "ms-vscode.cpptools",
+    "github.vscode-github-actions",
+    "tamasfe.even-better-toml",
+    "redhat.vscode-yaml"
+  ]
+}
