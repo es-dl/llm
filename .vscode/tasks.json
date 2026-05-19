@@ -12,11 +12,10 @@
         "tokenizer",
         "train.py",
         "inference.py",
-        "benchmark",
         "benchmarks",
         "data",
         "engine",
-        "experiments"
+        "src"
       ],
       "group": "test",
       "problemMatcher": []
