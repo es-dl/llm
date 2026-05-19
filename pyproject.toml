@@ -3,12 +3,12 @@ requires = ["setuptools>=69", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "qchat"
+name = "llm"
 version = "0.1.0"
-description = "Local GPT-style language model training, inference, and benchmarking."
+description = "Local language model training, inference, and benchmarking."
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "UNLICENSED" }
+license = { text = "MIT" }
 authors = [
   { name = "Eamon2009" }
 ]
@@ -34,9 +34,9 @@ dev = [
 ]
 
 [project.scripts]
-qchat-train = "train:main"
-qchat-infer = "inference:main"
-qchat-benchmark = "benchmarks.benchmark:main"
+llm-train = "train:main"
+llm-infer = "inference:main"
+llm-benchmark = "benchmarks.benchmark:main"
 
 [tool.setuptools]
 py-modules = ["train", "inference"]
