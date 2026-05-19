@@ -1,0 +1,32 @@
+.ipynb_checkpoints/
+__pycache__/
+
+# Python environments
+.venv/
+env/
+venv/
+
+# Node/build caches
+.npm-cache/
+frontend/dist/
+frontend/node_modules/
+
+# Build outputs
+build/
+CMakeCache.txt
+*.bin
+*.exe
+benchmark/results/
+benchmarks/results/
+
+# Local datasets and generated text
+cleaned.txt
+data/local/
+engine/fine-tune/input.txt
+
+# Model checkpoints
+*.pt
+*best_model.pt
+
+# Local dependency bundles
+libtorch-win-shared-with-deps-2.11.0+cpu (2)/
