@@ -1,0 +1,59 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qchat"
+version = "0.1.0"
+description = "Local GPT-style language model training, inference, and benchmarking."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "UNLICENSED" }
+authors = [
+  { name = "Eamon2009" }
+]
+dependencies = [
+  "torch>=2.2"
+]
+
+[project.optional-dependencies]
+benchmark = [
+  "psutil>=5.9",
+  "tiktoken>=0.7"
+]
+legacy = [
+  "tiktoken>=0.7"
+]
+directml = [
+  "torch-directml>=0.2; platform_system == 'Windows'"
+]
+dev = [
+  "ruff>=0.6",
+  "psutil>=5.9",
+  "tiktoken>=0.7"
+]
+
+[project.scripts]
+qchat-train = "train:main"
+qchat-infer = "inference:main"
+qchat-benchmark = "benchmarks.benchmark:main"
+
+[tool.setuptools]
+py-modules = ["train", "inference"]
+
+[tool.setuptools.packages.find]
+include = ["tokenizer*", "benchmarks*", "data*", "engine*", "src*"]
+exclude = ["data.local*", "benchmarks.results*", "build*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = [
+  "E501"
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["tokenizer", "benchmarks", "data", "engine", "src"]
