@@ -1,0 +1,40 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Train: quick smoke",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/train.py",
+      "console": "integratedTerminal",
+      "args": [
+        "--quick",
+        "--no-chat",
+        "--data",
+        "data/input.txt",
+        "--tokenizer",
+        "data/local/smoke_tokenizer.json",
+        "--checkpoint",
+        "data/local/smoke_model.pt"
+      ]
+    },
+    {
+      "name": "Train: full",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/train.py",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Inference: BPE prompt",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/inference.py",
+      "console": "integratedTerminal",
+      "args": [
+        "--prompt",
+        "Hello"
+      ]
+    }
+  ]
+}
