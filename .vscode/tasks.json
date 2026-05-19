@@ -1,0 +1,126 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Python: compile repo",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-m",
+        "compileall",
+        "-q",
+        "tokenizer",
+        "train.py",
+        "inference.py",
+        "benchmark",
+        "benchmarks",
+        "data",
+        "engine",
+        "experiments"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Tokenizer: smoke test",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "-c",
+        "from tokenizer import BytePairTokenizer; t=BytePairTokenizer.train('hello hello world', vocab_size=270, progress_every=0); ids=t.encode('hello world'); assert t.decode(ids) == 'hello world'; print('tokenizer ok:', ids)"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Train: quick smoke",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "train.py",
+        "--quick",
+        "--no-chat",
+        "--data",
+        "data/input.txt",
+        "--tokenizer",
+        "data/local/smoke_tokenizer.json",
+        "--checkpoint",
+        "data/local/smoke_model.pt"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Train: full",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "train.py"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Inference: prompt",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "inference.py",
+        "--prompt",
+        "Hello"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Benchmark: quick",
+      "type": "shell",
+      "command": "python",
+      "args": [
+        "benchmarks/benchmark.py",
+        "--quick",
+        "--checkpoint",
+        "mini-quadtrix-bpe.pt",
+        "--data",
+        "data/input.txt",
+        "--tokenizer",
+        "tokenizer/tokenizer.json"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "C Engine: build",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "New-Item -ItemType Directory -Force build | Out-Null; gcc -std=c11 -O2 engine/engine.c -lm -o build/quadtrix_engine.exe"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "group": "build",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Tools: JS syntax",
+      "type": "shell",
+      "command": "node",
+      "args": [
+        "--check",
+        "tools/commit_backfill.js"
+      ],
+      "group": "test",
+      "problemMatcher": []
+    }
+  ]
+}
