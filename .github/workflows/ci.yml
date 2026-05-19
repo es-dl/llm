@@ -31,7 +31,7 @@ jobs:
           python-version: "3.11"
 
       - name: Compile Python sources
-        run: python -m compileall -q tokenizer train.py inference.py benchmark benchmarks data engine experiments
+        run: python -m compileall -q tokenizer train.py inference.py benchmarks data engine src
 
       - name: Test custom BPE tokenizer
         run: >
