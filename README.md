@@ -2,7 +2,7 @@
 
 Train, sample, and benchmark a compact GPT-style language model from your own text.
 
-`qchat` is a local LLM pipeline with a custom byte-level BPE tokenizer, a PyTorch decoder-only Transformer, checkpointed training, standalone inference, and repeatable benchmarks. It is designed as a usable experimentation stack: put text in, train a model, generate from it, measure it, iterate.
+`llm` is a local LLM pipeline with a custom byte-level BPE tokenizer, a PyTorch decoder-only Transformer, checkpointed training, standalone inference, and repeatable benchmarks. It is designed as a usable experimentation stack: put text in, train a model, generate from it, measure it, iterate.
 
 ```text
 data/input.txt -> tokenizer/tokenizer.json -> train.py -> mini-quadtrix-bpe.pt -> inference.py
@@ -266,7 +266,6 @@ engine/
 src/
   directml/                 experimental iGPU/DirectML path
   large_gpu/                older large-GPU experiment
-  scratch/                  small experiments
 
 assets/                     run screenshots and artifacts
 tools/                      utility scripts
