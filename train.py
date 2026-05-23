@@ -83,13 +83,13 @@ def parse_args():
         args.vocab_size = min(args.vocab_size, 512)
         args.tokenizer_train_chars = min(args.tokenizer_train_chars, 100_000)
         args.batch_size = 2
-        args.block_size = 128
-        args.max_iters = 2
-        args.eval_interval = 1
-        args.eval_iters = 1
-        args.n_embd = 128
+        args.block_size = 28
+        args.max_iters = 2000
+        args.eval_interval = 10
+        args.eval_iters = 10
+        args.n_embd = 120
         args.n_head = 4
-        args.n_layer = 2
+        args.n_layer = 4
 
     return args
 
