@@ -17,7 +17,7 @@ permissions:
 
 jobs:
   analyze:
-    name: Analyze Python and JavaScript
+    name: Analyze Python 
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,7 +25,6 @@ jobs:
       matrix:
         language:
           - python
-          - javascript-typescript
 
     steps:
       - name: Check out repository
