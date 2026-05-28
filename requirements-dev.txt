@@ -1,2 +1,2 @@
 -r requirements-benchmark.txt
-ruff>=0.6
+ruff>=0.15.14
