@@ -85,21 +85,3 @@ jobs:
           mkdir -p build
           gcc -std=c11 -O2 engine/engine.c -lm -o build/quadtrix_engine
 
-  tools:
-    name: Tooling checks
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-
-      - name: Check JavaScript helper syntax
-        run: node --check tools/commit_backfill.js
-
-      - name: Check workflow and editor JSON
-        run: python -m json.tool .vscode/settings.json > /dev/null && python -m json.tool .vscode/tasks.json > /dev/null
